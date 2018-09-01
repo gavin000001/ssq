@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#6)(g%@*rlaswzv5_6i(0c^6ruq^90#fse1uco_40pdf8x0dno'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.1.94','localhost', 'k3.xintra.com.cn']
 
@@ -77,12 +77,12 @@ WSGI_APPLICATION = 'ssq.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'ssq',
-        # 'USER': 'root',
-        # 'PASSWORD': 'gavin',
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ssq',
+        'USER': 'root',
+        'PASSWORD': 'gavin',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
