@@ -128,3 +128,10 @@ STATICFILES_DIRS = [
 # 若存放静态文件的static目录在project目录下，则用该定义
     os.path.join(BASE_DIR, "static"),
 ]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+try:
+    from .settings_local import *
+except:
+    print("import settings_local err")

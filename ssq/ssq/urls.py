@@ -18,13 +18,13 @@ from django.contrib import admin
 from myssq import views as myssq_views
 
 urlpatterns = [
+    url(r'', myssq_views.history_datas, name="history_datas"),
     url(r'^admin/', admin.site.urls),
     url(r'^index/', myssq_views.index, name="index"),
     url(r'^init_datas/', myssq_views.init_datas, name="init_datas"),
     url(r'^xiangqi/', myssq_views.xiangqi, name="xiangqi"),
     url(r'^upload/', myssq_views.upload, name="upload"),
     url(r'^import_history_datas/', myssq_views.import_history_datas, name="import_history_datas"),
-    url(r'^', myssq_views.history_datas, name="history_datas"),
     # url(r'^history_datas/', myssq_views.history_datas, name="history_datas"),
     url(r'^old_datas/', myssq_views.old_datas, name="old_datas"),
 ]

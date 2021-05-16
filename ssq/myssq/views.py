@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
-from models import DoubleBallAll, DoubleBall
+from .models import DoubleBallAll, DoubleBall
 import datetime
 from django.core.paginator import Paginator ,PageNotAnInteger ,EmptyPage
 import requests
@@ -13,7 +13,7 @@ import os
 
 def index(request):
     context = {}
-    print "-----------"
+    print ("-----------")
     try:
         response = requests.get('http://datachart.500.com/ssq/history/history.shtml')
         if len(response.text.split('<tbody id="tdata">')) > 1:
@@ -49,19 +49,21 @@ def index(request):
                                 doubleball.date=date
                                 doubleball.save()
     except BaseException:
-        print "Error: 没有网络"
+        print ("Error: 没有网络")
     info = "Hello World"
     context["info"] = info
     return render(request,"base/dashboard.html", context)
 
 def history_datas(request):
     context = {}
-    doubleballs = DoubleBall.objects.order_by("-date")
+    doubleballs = DoubleBall.objects.all().order_by("-date")
     total = doubleballs.count()
-    page = request.GET.get("page")
-    if not page or page < 1:
+    page = request.GET.get("page", 1)
+    print(f"{page = }")
+    # if not page or page < 1:
+    if not page:
         page = 1
-    paginator = Paginator(doubleballs,10)
+    paginator = Paginator(doubleballs,100)
     try:
         # 尝试获取请求的页数的 产品信息
         doubleballs = paginator.page(int(page))
@@ -149,11 +151,11 @@ def init_datas(request):
                                         cursor.execute(sql)
                                         cursor.close()
                                         transaction.commit()
-                                        print "插入%s条数据， %s, 用时: %s" % (i, datetime.datetime.now(), datetime.datetime.now() - begin_time)
+                                        print ("插入%s条数据， %s, 用时: %s" % (i, datetime.datetime.now(), datetime.datetime.now() - begin_time))
                                         sql = "insert into doubleball_all (red1, red2, red3, red4, red5, red6, blue, status) values "
                                     else:
                                         sql += ", "
-        print "i = %s, 用时: %s" % (i, datetime.datetime.now() - begin_time)
+        print ("i = %s, 用时: %s" % (i, datetime.datetime.now() - begin_time))
     context["info"] = info
     return render(request,"html/init_datas.html", context)
 
