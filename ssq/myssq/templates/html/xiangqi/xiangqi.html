@@ -1,0 +1,26 @@
+{% extends '../../base/base.html' %}
+{% block main %}
+<ol class="breadcrumb">
+  <li><a href="/">首页</a></li>
+  <li class="active">中国象棋</li>
+</ol>
+<div class="panel panel-default">
+  <div class="panel-heading">中国象棋</div>
+  <div class="panel-body">
+    <form enctype="multipart/form-data" action="/upload/" method="POST">
+      {% csrf_token %}
+       <input type="file" name="upload" />
+       <br/>
+       <input type="submit" value="上传"/>
+    </form>
+    <hr>
+    {% autoescape off %}
+      {{xiangqiqipan}}
+    {% endautoescape %}
+
+  </div>
+  <div class="panel-footer">
+    数据加载完毕
+  </div>
+</div>
+{% endblock %}

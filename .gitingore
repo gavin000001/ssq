@@ -1,0 +1,4 @@
+*.idea
+/ssq/ssq/settings_local.py
+*.pyc
+*.DS_Store
