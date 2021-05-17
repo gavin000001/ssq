@@ -1,4 +1,0 @@
-*.idea
-/env/
-/ssq/ssq/settings_local.py
-*.pyc
