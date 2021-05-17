@@ -2,3 +2,7 @@
 env/
 .DS_Store
 ssq/ssq/settings_local.py
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
